@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paradise Noodles – Hauptgerichte</title>
+    <link rel="stylesheet" href="styles/standard.css" />
+    <link rel="stylesheet" href="styles/assets.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles/basket.css" />
+  </head>
+  <body>
+    <header class="app_header">
+      <img
+        class="app_logo"
+        src="assets/icons/bestellapp.jpg"
+        alt="BestellApp"
+      />
+      <img class="chef_icon" src="assets/icons/logo.png" alt="Koch" />
+    </header>
+
+    <div class="names">
+      <h1>Paradise Noodles</h1>
+    </div>
+
+    <nav class="nav_links" id="nav_links">
+      <a href="index.html">Hauptgerichte</a>
+    </nav>
+
+    <div class="content_wrapper">
+      <section class="content">
+        <div class="menue" id="menue"></div>
+      </section>
+
+      <aside class="basket_wrapper">
+        <div class="basket">
+          <h3>Warenkorb</h3>
+          <div id="basket_content"></div>
+          <div class="basket_footer">
+            <span>Summe:</span>
+            <span id="basket_total">0,00 €</span>
+          </div>
+          <button class="basket_clear_btn" onclick="clearBasket()">
+            Korb leeren
+          </button>
+        </div>
+      </aside>
+    </div>
+
+    <script src="scripts/db.js"></script>
+    <script src="script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        if (typeof renderMenue === "function") {
+          renderMenue();
+        }
+      });
+    </script>
+  </body>
+</html>

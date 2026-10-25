@@ -1,0 +1,61 @@
+/* HEADER */
+.app_header {
+  height: 70px;
+  width: 100%;
+  background-color: #9dbfe0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  position: relative;
+}
+
+/* BestellApp Logo links */
+.app_logo {
+  height: 42px;
+  object-fit: contain;
+}
+
+/* Koch exakt mittig */
+.chef_icon {
+  height: 42px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Menu rechts */
+.menu_icon {
+  height: 28px;
+  cursor: pointer;
+}
+
+/* TITELBEREICH */
+.names {
+  padding: 20px;
+  background-color: white;
+  color: black;
+}
+
+.names h1 {
+  margin: 0;
+  font-size: 26px;
+}
+
+/* NAVIGATION */
+.nav_links {
+  display: flex;
+  gap: 16px;
+  padding: 10px 20px;
+  background-color: #16202a;
+}
+
+.nav_links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.nav_links a:hover {
+  text-decoration: underline;
+}
