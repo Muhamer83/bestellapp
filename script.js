@@ -4,6 +4,15 @@ if (!basket) {
   basket = [];
 }
 
+function toggleMenu() {
+  var nav = document.getElementById("nav_links");
+  if (nav.style.display === "flex") {
+    nav.style.display = "none";
+  } else {
+    nav.style.display = "flex";
+  }
+}
+
 function saveBasket() {
   localStorage.setItem("basket", JSON.stringify(basket));
 }

@@ -120,15 +120,25 @@ function renderHauptgerichte() {
 
     menue.innerHTML +=
       "<div class='produkt'>" +
-        "<img class='produkt_img' src='" + p.image + "'>" +
-        "<div class='textbereich'>" +
-          "<h2>" + p.name + "</h2>" +
-          "<p>" + p.ingredients + "</p>" +
-          "<p class='preis'>" + p.price.toFixed(2).replace(".", ",") + " €</p>" +
-        "</div>" +
-        "<button class='plus' onclick='addToBasket(" + i + ")'>" +
-          "<img src='assets/icons/plus.png'>" +
-        "</button>" +
+      "<img class='produkt_img' src='" +
+      p.image +
+      "'>" +
+      "<div class='textbereich'>" +
+      "<h2>" +
+      p.name +
+      "</h2>" +
+      "<p>" +
+      p.ingredients +
+      "</p>" +
+      "<p class='preis'>" +
+      p.price.toFixed(2).replace(".", ",") +
+      " €</p>" +
+      "</div>" +
+      "<button class='plus' onclick='addToBasket(" +
+      i +
+      ")'>" +
+      "<img src='assets/icons/plus.png'>" +
+      "</button>" +
       "</div>";
   }
 }
@@ -146,15 +156,25 @@ function renderBeilagen() {
 
     menue.innerHTML +=
       "<div class='produkt'>" +
-        "<img class='produkt_img' src='" + p.image + "'>" +
-        "<div class='textbereich'>" +
-          "<h2>" + p.name + "</h2>" +
-          "<p>" + p.ingredients + "</p>" +
-          "<p class='preis'>" + p.price.toFixed(2).replace(".", ",") + " €</p>" +
-        "</div>" +
-        "<button class='plus' onclick='addToBasket(" + i + ")'>" +
-          "<img src='assets/icons/plus.png'>" +
-        "</button>" +
+      "<img class='produkt_img' src='" +
+      p.image +
+      "'>" +
+      "<div class='textbereich'>" +
+      "<h2>" +
+      p.name +
+      "</h2>" +
+      "<p>" +
+      p.ingredients +
+      "</p>" +
+      "<p class='preis'>" +
+      p.price.toFixed(2).replace(".", ",") +
+      " €</p>" +
+      "</div>" +
+      "<button class='plus' onclick='addToBasket(" +
+      i +
+      ")'>" +
+      "<img src='assets/icons/plus.png'>" +
+      "</button>" +
       "</div>";
   }
 }

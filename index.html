@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg" />
     <title>Paradise Noodles – Hauptgerichte</title>
     <link rel="stylesheet" href="styles/standard.css" />
     <link rel="stylesheet" href="styles/assets.css" />
@@ -17,6 +18,7 @@
         alt="BestellApp"
       />
       <img class="chef_icon" src="assets/icons/logo.png" alt="Koch" />
+      <img class="menu_icon" src="assets/icons/menu.png" alt="Menu" onclick="toggleMenu()" />
     </header>
 
     <div class="names">
@@ -49,12 +51,5 @@
 
     <script src="scripts/db.js"></script>
     <script src="script.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        if (typeof renderMenue === "function") {
-          renderMenue();
-        }
-      });
-    </script>
   </body>
 </html>
