@@ -1,8 +1,4 @@
-// Product database
-// category: "haupt", "beilage", "extra"
-
 var products = [
-  // --- Main dishes ---
   {
     name: "Pasta Napoli",
     ingredients: "mit Tomatensauce und frischem Basilikum",
@@ -59,8 +55,6 @@ var products = [
     image: "assets/img/pad_thai.jpg",
     category: "haupt",
   },
-
-  // --- Sides ---
   {
     name: "Knoblauchbrot",
     ingredients: "frisch gebacken, mit Knoblauchbutter",
@@ -82,8 +76,6 @@ var products = [
     image: "assets/img/supplements/pommes.jpg",
     category: "beilage",
   },
-
-  // --- Extras / sauces ---
   {
     name: "Extra Tomatensauce",
     ingredients: "hausgemachte Tomatensauce",
@@ -107,79 +99,31 @@ var products = [
   },
 ];
 
-// Render main dishes into #menue
 function renderHauptgerichte() {
-  var menue = document.getElementById("menue");
+  let menue = document.getElementById("menue");
   if (!menue) return;
-
   menue.innerHTML = "";
-
-  for (var i = 0; i < products.length; i++) {
-    var p = products[i];
-    if (p.category !== "haupt") continue;
-
-    menue.innerHTML +=
-      "<div class='produkt'>" +
-      "<img class='produkt_img' src='" +
-      p.image +
-      "'>" +
-      "<div class='textbereich'>" +
-      "<h2>" +
-      p.name +
-      "</h2>" +
-      "<p>" +
-      p.ingredients +
-      "</p>" +
-      "<p class='preis'>" +
-      p.price.toFixed(2).replace(".", ",") +
-      " €</p>" +
-      "</div>" +
-      "<button class='plus' onclick='addToBasket(" +
-      i +
-      ")'>" +
-      "<img src='assets/icons/plus.png'>" +
-      "</button>" +
-      "</div>";
+  for (let i = 0; i < products.length; i++) {
+    if (products[i].category === "haupt") {
+      menue.innerHTML += getProductHTML(products[i], i);
+    }
   }
 }
 
-// Render sides + extras into #beilagen
 function renderBeilagen() {
-  var menue = document.getElementById("beilagen");
+  let menue = document.getElementById("beilagen");
   if (!menue) return;
-
   menue.innerHTML = "";
-
-  for (var i = 0; i < products.length; i++) {
-    var p = products[i];
-    if (p.category !== "beilage" && p.category !== "extra") continue;
-
-    menue.innerHTML +=
-      "<div class='produkt'>" +
-      "<img class='produkt_img' src='" +
-      p.image +
-      "'>" +
-      "<div class='textbereich'>" +
-      "<h2>" +
-      p.name +
-      "</h2>" +
-      "<p>" +
-      p.ingredients +
-      "</p>" +
-      "<p class='preis'>" +
-      p.price.toFixed(2).replace(".", ",") +
-      " €</p>" +
-      "</div>" +
-      "<button class='plus' onclick='addToBasket(" +
-      i +
-      ")'>" +
-      "<img src='assets/icons/plus.png'>" +
-      "</button>" +
-      "</div>";
+  for (let i = 0; i < products.length; i++) {
+    if (
+      products[i].category === "beilage" ||
+      products[i].category === "extra"
+    ) {
+      menue.innerHTML += getProductHTML(products[i], i);
+    }
   }
 }
 
-// Auto-render the correct page menu (no inline script needed)
 document.addEventListener("DOMContentLoaded", function () {
   if (document.getElementById("menue")) renderHauptgerichte();
   if (document.getElementById("beilagen")) renderBeilagen();

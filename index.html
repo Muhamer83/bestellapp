@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg" />
     <title>Paradise Noodles – Hauptgerichte</title>
+    <link rel="icon" type="image/png" href="assets/icons/logo.png" />
     <link rel="stylesheet" href="styles/standard.css" />
     <link rel="stylesheet" href="styles/assets.css" />
     <link rel="stylesheet" href="style.css" />
@@ -18,7 +18,12 @@
         alt="BestellApp"
       />
       <img class="chef_icon" src="assets/icons/logo.png" alt="Koch" />
-      <img class="menu_icon" src="assets/icons/menu.png" alt="Menu" onclick="toggleMenu()" />
+      <img
+        class="menu_icon"
+        src="assets/icons/menu.png"
+        alt="Menu"
+        onclick="toggleMenu()"
+      />
     </header>
 
     <div class="names">
@@ -42,6 +47,9 @@
             <span>Summe:</span>
             <span id="basket_total">0,00 €</span>
           </div>
+          <button class="basket_order_btn" onclick="orderBasket()">
+            Bestellen!
+          </button>
           <button class="basket_clear_btn" onclick="clearBasket()">
             Korb leeren
           </button>
@@ -49,6 +57,7 @@
       </aside>
     </div>
 
+    <script src="scripts/templates.js"></script>
     <script src="scripts/db.js"></script>
     <script src="script.js"></script>
   </body>

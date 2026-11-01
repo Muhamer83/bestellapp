@@ -1,9 +1,7 @@
-/* Rechte Spalte (Basket) */
 .basket_wrapper {
-  width: 300px; /* feste Breite */
+  width: 300px;
 }
 
-/* Basket bleibt beim Scrollen sichtbar */
 .basket {
   width: 100%;
   max-height: 400px;
@@ -18,7 +16,6 @@
   color: #000;
 }
 
-/* Kopf mit Icon + Titel */
 .basket_header {
   display: flex;
   align-items: center;
@@ -36,7 +33,6 @@
   margin: 0;
 }
 
-/* Inhalt des Baskets */
 #basket_content {
   flex: 1;
   overflow-y: auto;
@@ -45,7 +41,6 @@
   border-radius: 6px;
 }
 
-/* Einzelne Position im Basket */
 .basket_item {
   display: flex;
   justify-content: space-between;
@@ -69,7 +64,6 @@
   font-weight: 600;
 }
 
-/* Menge + Buttons */
 .basket_qty_controls {
   display: flex;
   align-items: center;
@@ -88,12 +82,10 @@
   text-align: center;
 }
 
-/* Preis rechts */
 .basket_item_price {
   font-weight: 600;
 }
 
-/* Summe unten */
 .basket_footer {
   display: flex;
   justify-content: space-between;
@@ -101,10 +93,30 @@
   font-weight: 700;
 }
 
-/* Clear basket button */
+.basket_order_btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  cursor: pointer;
+  background-color: var(--accent_orange, #e67e22);
+  color: white;
+  border: none;
+  font-weight: bold;
+}
+
 .basket_clear_btn {
   width: 100%;
   margin-top: 10px;
   padding: 10px;
   cursor: pointer;
+}
+
+.trash_btn {
+  margin-left: 55px; /* Wert anpassen, um den Abstand zu vergrößern oder verkleinern */
+}
+
+@media (max-width: 767px) {
+  .basket_wrapper {
+    width: 100%;
+  }
 }

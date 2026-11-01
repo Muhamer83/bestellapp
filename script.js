@@ -1,128 +1,97 @@
-let basket = JSON.parse(localStorage.getItem("basket"));
-
-if (!basket) {
-  basket = [];
-}
-
-function toggleMenu() {
-  var nav = document.getElementById("nav_links");
-  if (nav.style.display === "flex") {
-    nav.style.display = "none";
-  } else {
-    nav.style.display = "flex";
-  }
-}
+let basket = JSON.parse(localStorage.getItem("basket")) || [];
 
 function saveBasket() {
   localStorage.setItem("basket", JSON.stringify(basket));
 }
 
-function addToBasket(i) {
-  let item = null;
-
+function getBasketItem(i) {
   for (let j = 0; j < basket.length; j++) {
-    if (basket[j].i === i) {
-      item = basket[j];
-      break;
-    }
+    if (basket[j].i === i) return basket[j];
   }
+  return null;
+}
 
+function addToBasket(i) {
+  let item = getBasketItem(i);
   if (item) {
     item.qty += 1;
   } else {
     basket.push({ i: i, qty: 1 });
   }
-
   saveBasket();
   renderBasket();
 }
 
 function changeQty(i, delta) {
-  let item = null;
-  let index = -1;
-
   for (let j = 0; j < basket.length; j++) {
     if (basket[j].i === i) {
-      item = basket[j];
-      index = j;
+      basket[j].qty += delta;
+      if (basket[j].qty <= 0) basket.splice(j, 1);
       break;
     }
   }
+  saveBasket();
+  renderBasket();
+}
 
-  if (!item) {
-    return;
+function removeItem(i) {
+  for (let j = 0; j < basket.length; j++) {
+    if (basket[j].i === i) {
+      basket.splice(j, 1);
+      break;
+    }
   }
-
-  item.qty += delta;
-
-  if (item.qty <= 0) {
-    basket.splice(index, 1);
-  }
-
   saveBasket();
   renderBasket();
 }
 
 function clearBasket() {
+  if (confirm("Möchtest du den Warenkorb wirklich löschen?")) {
+    basket = [];
+    saveBasket();
+    renderBasket();
+  }
+}
+
+function orderBasket() {
+  if (basket.length === 0) return;
+  alert("Deine Bestellung wird verarbeitet.");
   basket = [];
-  localStorage.removeItem("basket");
+  saveBasket();
   renderBasket();
 }
 
 function renderBasket() {
-  const basketContent = document.getElementById("basket_content");
-  const basketTotal = document.getElementById("basket_total");
-
-  if (!basketContent || !basketTotal) {
-    return;
-  }
-
-  basketContent.innerHTML = "";
-
+  let content = document.getElementById("basket_content");
+  if (!content) return;
+  content.innerHTML = "";
   if (basket.length === 0) {
-    basketContent.innerHTML = "<p>Warenkorb leer</p>";
-    basketTotal.textContent = "0,00 €";
-    return;
+    content.innerHTML = "<p>Warenkorb leer</p>";
+    document.getElementById("basket_total").textContent = "0,00 €";
+  } else {
+    calculateAndRender(content);
   }
+}
 
+function calculateAndRender(content) {
   let sum = 0;
-
   for (let j = 0; j < basket.length; j++) {
-    const item = basket[j];
-    const product = products[item.i];
-
-    if (!product) {
-      continue;
-    }
-
-    const lineTotal = product.price * item.qty;
-    sum += lineTotal;
-
-    basketContent.innerHTML +=
-      "<div class='basket_item'>" +
-      "<div class='basket_item_main'>" +
-      "<span class='basket_item_name'>" +
-      product.name +
-      "</span>" +
-      "<div class='basket_qty_controls'>" +
-      "<img class='qty_btn' src='assets/icons/minus.png' alt='-' onclick='changeQty(" +
-      item.i +
-      ", -1)'>" +
-      "<span class='basket_qty'>" +
-      item.qty +
-      "</span>" +
-      "<img class='qty_btn' src='assets/icons/plus.png' alt='+' onclick='changeQty(" +
-      item.i +
-      ", 1)'>" +
-      "</div>" +
-      "</div>" +
-      "<span class='basket_item_price'>" +
-      lineTotal.toFixed(2).replace(".", ",") +
-      " €</span>" +
-      "</div>";
+    let item = basket[j];
+    let p = products[item.i];
+    sum += p.price * item.qty;
+    content.innerHTML += getBasketItemHTML(p, item);
   }
+  document.getElementById("basket_total").textContent =
+    sum.toFixed(2).replace(".", ",") + " €";
+}
 
-  basketTotal.textContent = sum.toFixed(2).replace(".", ",") + " €";
+function toggleMenu() {
+  let nav = document.getElementById("nav_links");
+  if (nav.style.display === "flex") {
+    nav.style.display = "none";
+  } else {
+    nav.style.display = "flex";
+  }
 }
 
 document.addEventListener("DOMContentLoaded", renderBasket);
